@@ -1,0 +1,43 @@
+// database
+datasource db {
+  provider = "sqlite"
+  url      = "file:database.db"
+}
+
+// generator
+generator client {
+  provider = "prisma-client-py"
+}
+
+// data models
+model Voucher {
+  id         Int      @id @default(autoincrement())
+  titulo     String
+  descricao  String
+  gato       String
+  local      String
+  lanche     String
+  duracao    Int
+  imagem     String
+  titular    Usuario? @relation(fields: [titular_id], references: [id])
+  titular_id Int?
+  Troca1     Troca[]  @relation("v_usuario1")
+  Troca2     Troca[]  @relation("v_usuario2")
+}
+
+model Usuario {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  nome     String
+  senha    String
+  vouchers Voucher[]
+}
+
+model Troca {
+  id          Int     @id @default(autoincrement())
+  v1          Voucher @relation(fields: [voucher1_id], references: [id], name: "v_usuario1")
+  voucher1_id Int
+  v2          Voucher @relation(fields: [voucher2_id], references: [id], name: "v_usuario2")
+  voucher2_id Int
+  status      Int
+}
