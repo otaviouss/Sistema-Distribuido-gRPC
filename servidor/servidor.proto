@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package servidor;
+
+service opcoesCliente {
+  rpc cadastrarCliente (Cliente) returns (Resposta) {}
+
+  rpc checarCliente (Cliente) returns (Resposta) {}
+}
+
+service opcoesVoucher {
+  rpc cadastrarVoucher (Voucher) returns (Resposta) {}
+
+  rpc apresentarVouchersUsuario (Cliente) returns (Resposta) {}
+
+  rpc apresentarVouchers (Voucher) returns (Resposta) {}
+}
+
+service opcoesTroca {
+  rpc apresentarTrocas (Cliente) returns (Resposta) {}
+
+  rpc proporTroca (Cliente) returns (Resposta) {}
+
+  rpc realizarTroca (Cliente) returns (Resposta) {}
+
+  rpc negarTroca (Cliente) returns (Resposta) {}
+}
+
+message Cliente {
+  string name = 1;
+  string email = 2;
+  string senha = 3;
+}
+
+message Voucher {
+  string titulo = 1;
+  string descricao = 2;
+  string gato = 3;
+  string local = 4;
+  string lanche = 5;
+  int32 duracao = 6;
+  int32 titular_id = 7;
+}
+
+message Resposta {
+  string message = 1;
+}
