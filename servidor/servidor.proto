@@ -11,37 +11,62 @@ service opcoesCliente {
 service opcoesVoucher {
   rpc cadastrarVoucher (Voucher) returns (Resposta) {}
 
-  rpc apresentarVouchersUsuario (Cliente) returns (Resposta) {}
+  rpc apresentarVouchersUsuario (ID) returns (Vouchers) {}
 
-  rpc apresentarVouchers (Voucher) returns (Resposta) {}
+  rpc apresentarVouchers (ID) returns (Vouchers) {}
 }
 
 service opcoesTroca {
-  rpc apresentarTrocas (Cliente) returns (Resposta) {}
+  rpc apresentarTrocas (Troca) returns (Trocas) {}
 
-  rpc proporTroca (Cliente) returns (Resposta) {}
+  rpc proporTroca (Troca) returns (Resposta) {}
 
-  rpc realizarTroca (Cliente) returns (Resposta) {}
+  rpc realizarTroca (Troca) returns (Resposta) {}
 
-  rpc negarTroca (Cliente) returns (Resposta) {}
+  rpc negarTroca (Troca) returns (Resposta) {}
 }
 
 message Cliente {
-  string name = 1;
+  string nome = 1;
   string email = 2;
   string senha = 3;
 }
 
 message Voucher {
-  string titulo = 1;
-  string descricao = 2;
-  string gato = 3;
-  string local = 4;
-  string lanche = 5;
-  int32 duracao = 6;
-  int32 titular_id = 7;
+  int32 id = 1;
+  string titulo = 2;
+  string descricao = 3;
+  string gato = 4;
+  string local = 5;
+  string lanche = 6;
+  int32 duracao = 7;
+  string imagem = 8;
+  int32 titular_id = 9;
+}
+
+message Vouchers {
+  repeated Voucher v = 1;
+}
+
+message Comp_Troca {
+  int32 id = 1;
+  Voucher v1 = 2;
+  Voucher v2 = 3;
+}
+
+message Trocas {
+  repeated Comp_Troca t = 1;
+}
+
+message Troca {
+  int32 id1 = 1;
+  int32 id2 = 2;
 }
 
 message Resposta {
-  string message = 1;
+  int32 message = 1;
+}
+
+message ID {
+  int32 id = 1;
 }

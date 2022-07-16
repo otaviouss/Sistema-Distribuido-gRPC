@@ -230,13 +230,16 @@ class banco():
     
 
 if __name__ == '__main__':
-    #u = asyncio.run(banco.inserir_usuario("aaa@gmail.com", "Larissa", "123"))
+    #u = asyncio.run(banco.inserir_usuario("fabi@hotmail.com", "Fábio", "123"))
     #asyncio.run(banco.inserir_voucher("V1", "D1", "Belinha", "Sala", "Ração", "", "URL", u))
     #asyncio.run(banco.nova_Troca(3, 4))
     #asyncio.run(banco.ver_usuarios())
-    #asyncio.run(banco.ver_vouchers())
+    u = asyncio.run(banco.ver_usuario("fabi@hotmail.com", "123"))
+    print(u)
+    v=asyncio.run(banco.ver_vouchers())
+    print(v)
     #asyncio.run(banco.alterar_Status_Troca_Rejeitado(1))
     #asyncio.run(banco.ver_Trocas())
-    asyncio.run(banco.alterar_Status_Troca_Aceito(8))
+    #asyncio.run(banco.alterar_Status_Troca_Aceito(8))
 
 

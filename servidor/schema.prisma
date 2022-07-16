@@ -1,15 +1,12 @@
-// database
+generator client {
+  provider = "prisma-client-py"
+}
+
 datasource db {
   provider = "sqlite"
   url      = "file:database.db"
 }
 
-// generator
-generator client {
-  provider = "prisma-client-py"
-}
-
-// data models
 model Voucher {
   id         Int      @id @default(autoincrement())
   titulo     String
@@ -19,8 +16,8 @@ model Voucher {
   lanche     String
   duracao    Int
   imagem     String
-  titular    Usuario? @relation(fields: [titular_id], references: [id])
   titular_id Int?
+  titular    Usuario? @relation(fields: [titular_id], references: [id])
   Troca1     Troca[]  @relation("v_usuario1")
   Troca2     Troca[]  @relation("v_usuario2")
 }
@@ -35,9 +32,9 @@ model Usuario {
 
 model Troca {
   id          Int     @id @default(autoincrement())
-  v1          Voucher @relation(fields: [voucher1_id], references: [id], name: "v_usuario1")
   voucher1_id Int
-  v2          Voucher @relation(fields: [voucher2_id], references: [id], name: "v_usuario2")
   voucher2_id Int
   status      Int
+  v1          Voucher @relation("v_usuario1", fields: [voucher1_id], references: [id])
+  v2          Voucher @relation("v_usuario2", fields: [voucher2_id], references: [id])
 }

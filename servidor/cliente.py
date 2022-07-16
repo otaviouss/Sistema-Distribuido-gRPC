@@ -1,39 +1,38 @@
 import asyncio
 import servidor_pb2_grpc
+import servidor_pb2
 
-from banco.bd import banco
-from _thread import *
+from bd import banco
 
 class Clientes(servidor_pb2_grpc.opcoesClienteServicer):
 
     def __init__(self):
         pass
 
-    def cadastrarCliente(self, email, nome, senha):
+    def cadastrarCliente(self, cliente, obj):
         try:
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
-            loop.run_until_complete(banco.inserir_usuario(email, nome, senha))
+            loop.run_until_complete(banco.inserir_usuario(cliente.email, cliente.nome, cliente.senha))
             loop.close()
-            return 1
-        except:
-            return 0
 
-    def checarCliente(self, email, senha):
+            return servidor_pb2.Resposta(message=1)
+        except:
+            return servidor_pb2.Resposta(message=0)
+
+    def checarCliente(self, cliente, obj):
+
         try:
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
-            user = loop.run_until_complete(banco.ver_usuario(email, senha))
+            user = loop.run_until_complete(banco.ver_usuario(cliente.email, cliente.senha))
             loop.close()
 
-            if user is None: return 0
+            if user is None: return servidor_pb2.Resposta(message=0)
 
-            return user.id
+            return servidor_pb2.Resposta(message=user.id)
         except:
-            return 0
-
-def main():
-    pass
+            return servidor_pb2.Resposta(message=0)
 
 if __name__ == '__main__':
-    main()
+    pass
