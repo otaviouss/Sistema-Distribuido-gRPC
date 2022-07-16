@@ -10,13 +10,13 @@ class Vouchers(servidor_pb2_grpc.opcoesVoucherServicer):
         pass
 
     def cadastrarVoucher(self, voucher, obj):
-        imagem = str(voucher.gato[0].lower()) + '.png'
+        imagem = str(voucher.gato[0].lower())
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         loop.run_until_complete(banco.inserir_voucher(voucher.titulo, voucher.descricao, voucher.gato, voucher.local, voucher.lanche, int(voucher.duracao), imagem, int(voucher.titular_id)))
         loop.close()
 
-        return servidor_pb2.Resposta(message=1)
+        return servidor_pb2.Resposta(message = 1)
 
     def apresentarVouchersUsuario(self, ID, obj):
         loop = asyncio.new_event_loop()
@@ -39,7 +39,7 @@ class Vouchers(servidor_pb2_grpc.opcoesVoucherServicer):
             )
             v.append(s)
 
-        return servidor_pb2.Vouchers(v)
+        return servidor_pb2.Vouchers(v = v)
 
     def apresentarVouchers(self, ID, obj):
         loop = asyncio.new_event_loop()
@@ -62,7 +62,7 @@ class Vouchers(servidor_pb2_grpc.opcoesVoucherServicer):
             )
             v.append(s)
 
-        return servidor_pb2.Vouchers(v)
+        return servidor_pb2.Vouchers(v = v)
 
 if __name__ == '__main__':
     pass

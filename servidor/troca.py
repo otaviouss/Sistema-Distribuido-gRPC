@@ -41,17 +41,17 @@ class Trocas(servidor_pb2_grpc.opcoesTrocaServicer):
                     imagem = trocas[i].v2.imagem,
                     titular_id = trocas[i].v2.titular_id
                 )
-                t = servidor_pb2.Comp_Troca(i+1, v1, v2)
+                t = servidor_pb2.Comp_Troca(id = i+1, v1 = v1, v2 = v2)
                 v.append(t)
 
-        return v
+        return servidor_pb2.Trocas(t=v)
 
     def proporTroca(self, troca, obj):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         loop.run_until_complete(banco.nova_Troca(int(troca.id1), int(troca.id2)))
         loop.close()
-        return servidor_pb2.Resposta(message=1)
+        return servidor_pb2.Resposta(message = 1)
 
     def realizarTroca(self, troca, obj):
         try:
@@ -60,9 +60,9 @@ class Trocas(servidor_pb2_grpc.opcoesTrocaServicer):
             loop.run_until_complete(banco.alterar_Status_Troca_Aceito(int(troca.id1)))
             loop.close()
             
-            return servidor_pb2.Resposta(message=1)
+            return servidor_pb2.Resposta(message = 1)
         except:
-            return servidor_pb2.Resposta(message=0)
+            return servidor_pb2.Resposta(message = 0)
 
     def negarTroca(self, troca, obj):
         try:
@@ -71,9 +71,9 @@ class Trocas(servidor_pb2_grpc.opcoesTrocaServicer):
             loop.run_until_complete(banco.alterar_Status_Troca_Rejeitado(int(troca.id1)))
             loop.close()
 
-            return servidor_pb2.Resposta(message=1)
+            return servidor_pb2.Resposta(message = 1)
         except:
-            return servidor_pb2.Resposta(message=0)
+            return servidor_pb2.Resposta(message = 0)
 
 if __name__ == '__main__':
     pass

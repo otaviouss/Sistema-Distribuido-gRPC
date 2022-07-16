@@ -3,7 +3,7 @@ import grpc
 import servidor_pb2_grpc
 
 from concurrent import futures
-from cliente import Clientes
+from usuario import Clientes
 from voucher import Vouchers
 from troca import Trocas
 

@@ -16,9 +16,9 @@ class Clientes(servidor_pb2_grpc.opcoesClienteServicer):
             loop.run_until_complete(banco.inserir_usuario(cliente.email, cliente.nome, cliente.senha))
             loop.close()
 
-            return servidor_pb2.Resposta(message=1)
+            return servidor_pb2.Resposta(message = 1)
         except:
-            return servidor_pb2.Resposta(message=0)
+            return servidor_pb2.Resposta(message = 0)
 
     def checarCliente(self, cliente, obj):
 
@@ -30,9 +30,9 @@ class Clientes(servidor_pb2_grpc.opcoesClienteServicer):
 
             if user is None: return servidor_pb2.Resposta(message=0)
 
-            return servidor_pb2.Resposta(message=user.id)
+            return servidor_pb2.Resposta(message = user.id)
         except:
-            return servidor_pb2.Resposta(message=0)
+            return servidor_pb2.Resposta(message = 0)
 
 if __name__ == '__main__':
     pass
