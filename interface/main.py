@@ -11,10 +11,10 @@ class ComponenteTroca(BoxLayout):
     id_troca = StringProperty()
 
     def aceitarClick(self):
-        c.realizarTroca(self.id_troca)
+        c.realizarTroca(int(self.id_troca))
 
     def rejeitarClick(self):
-        c.negarTroca(self.id_troca)
+        c.negarTroca(int(self.id_troca))
 
 class PopupTroca(Popup):
     pass
@@ -63,7 +63,7 @@ class TelaCadastro(Screen):
         duracao = self.ids.duracao.text
 
         if (titulo != '' and descricao != '' and gato != '' and local != '' and lanche != '' and duracao != ''):
-            c.cadastrarVoucher(titulo, descricao, gato, local, lanche, duracao)
+            c.cadastrarVoucher(titulo, descricao, gato, local, lanche, int(duracao))
             self.parent.current = 'telamenu'
 
             self.ids.titulo.text = ''
