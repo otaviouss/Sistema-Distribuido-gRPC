@@ -1,6 +1,6 @@
 import kivy
 
-from cliente.cliente import Cliente
+from cliente import Cliente
 
 kivy.require('2.1.0')
 from kivy.app import App
