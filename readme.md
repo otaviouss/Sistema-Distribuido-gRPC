@@ -10,9 +10,13 @@ De forma mais simples, você pode executar os seguintes comandos:
 
 Para instalar os pacotes necessários.
 
+``cd servidor``
+
 ``make server``
 
 Para inicializar o servidor.
+
+Em outro terminal, no diretório base:
 
 ``make client``
 
@@ -42,7 +46,7 @@ Por fim, execute o servidor em um terminal usando:
 
 ``python3 servidor.py``
 
-E em outro terminal, de dentr da pasta interface, execute o cliente:
+E em outro terminal, de dentro da pasta interface, execute o cliente:
 
 ``python3 main.py``
 
