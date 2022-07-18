@@ -19,6 +19,18 @@ class ComponenteTroca(BoxLayout):
 class PopupTroca(Popup):
     pass
 
+
+class TelaInicial(Screen):
+    def IrParaLogin(self):
+        self.parent.current = 'login'
+
+    def IrParaCadastroUsuario(self):
+        self.parent.current = 'telacadastrousuario'
+
+class TelaCadastroUsuario(Screen):
+    def IrParaTelaInicial(self):
+        self.parent.current = 'telainicial'
+
 class Login(Screen):
     
     def Clicou(self):
@@ -31,6 +43,8 @@ class Login(Screen):
             return True
         else:
             self.ids.Jovem.text = 'Preencha todos os campos!'
+            popup = Popup(title='Test popup', content=Label(text='Hello world'), size_hint=(None, None), size=(400, 400))
+            popup.open()
             return False
 
 
@@ -99,7 +113,9 @@ class TrocatApp(App):
         Window.clearcolor = (1,1,1,1)
         manager = ScreenManager()
 
+        manager.add_widget(TelaInicial(name='telainicial'))
         manager.add_widget(Login(name='login'))
+        manager.add_widget(TelaCadastroUsuario(name='telacadastrousuario'))
         manager.add_widget(TelaMenu(name='telamenu'))
         manager.add_widget(TelaCadastro(name='telacadastro'))
         manager.add_widget(TelaMeusVouchers(name='telameusvouchers'))

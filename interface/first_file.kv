@@ -1,0 +1,45 @@
+#:kivy 2.1.0
+#:import Factory kivy.factory.Factory
+
+# --
+<LabelFont@Label>:
+    font_name: 'data/Gabriela-Regular.ttf'
+# --
+<ButtonFont@Button>:
+    font_name: 'data/Gabriela-Regular.ttf'
+# --
+<LabelLogin@Label>:
+    font_name: 'data/Gabriela-Regular.ttf'
+
+    canvas.before:
+        Color:
+            rgba: 255, 255, 255, 0
+        Rectangle:
+            pos: self.pos
+            size: self.size
+# --
+<LabelCadastro@Label>:
+    font_name: 'data/Gabriela-Regular.ttf'
+
+    canvas.before:
+        Color:
+            rgba: 255, 255, 255, 0
+        Rectangle:
+            pos: self.pos
+            size: self.size    
+
+# --
+<InputCadastro@TextInput>:
+    multiline: False
+    write_tab: False
+
+# --
+<PopupCreditos@Popup>:
+    size_hint: None, None
+    size: 400, 400
+    title: 'Créditos'
+    LabelFont:
+        text: 'Em Construção...'
+        #color: 0,0,0,0
+        bold: 1
+        font_size: 45
