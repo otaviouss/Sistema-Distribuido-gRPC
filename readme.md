@@ -26,7 +26,7 @@ Instale as dependências listadas no arquivo requirements.txt utilizando o segui
 
 ``pip3 install -r requirements.txt``
 
-Após a instalação das dependências, execute o seguinte comando:
+Após a instalação das dependências, execute o seguinte comando dentro da pasta servidor:
 
 ``prisma generate``
 
@@ -42,7 +42,7 @@ Por fim, execute o servidor em um terminal usando:
 
 ``python3 servidor.py``
 
-E em outro terminal, execute o cliente:
+E em outro terminal, de dentr da pasta interface, execute o cliente:
 
 ``python3 main.py``
 

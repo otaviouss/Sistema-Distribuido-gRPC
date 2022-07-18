@@ -1,10 +1,10 @@
 init: requirements.txt
 	pip install -r requirements.txt
-	prisma generate
+	prisma generate --schema=./servidor/schema.prisma
 
-client: main.py
-	python3 main.py
+client: interface/main.py
+	python3 interface/main.py
 
-server: servidor.py
+server: servidor/servidor.py
 	prisma py fetch
-	python3 servidor.py
+	python3 servidor/servidor.py

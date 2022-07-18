@@ -87,7 +87,7 @@ class Cliente():
 
         with grpc.insecure_channel('localhost:50051') as channel:
             stub = s_grpc.opcoesTrocaStub(channel)
-            response = stub.apresentarTrocas(s.Troca(id1=id_troca))
+            response = stub.realizarTroca(s.Troca(id1=id_troca))
 
         print("Troca Aceita")
 
