@@ -31,6 +31,21 @@ class TelaCadastroUsuario(Screen):
     def IrParaTelaInicial(self):
         self.parent.current = 'telainicial'
 
+    def CadastrarUsuario(self):
+        nome = self.ids.nome.text
+        email = self.ids.email.text
+        senha = self.ids.senha.text
+
+        if (nome != '' and email != '' and senha != ''):
+            c.solicitarCriarUsuario(nome, email, senha)
+            self.parent.current = 'telamenu'
+
+            self.ids.nome.text = ''
+            self.ids.email.text = ''
+            self.ids.senha.text = ''
+        else:
+            self.ids.cad.text = 'Preencha todos os campos!'
+
 class Login(Screen):
     
     def Clicou(self):
@@ -40,6 +55,8 @@ class Login(Screen):
         if (login != '') and (senha != ''):
             r = c.realizarLogin(login, senha)
             self.VerificarLogin(r)
+            self.ids.OK.text = ''
+            self.ids.not_OK.text = ''
             return True
         else:
             self.ids.Jovem.text = 'Preencha todos os campos!'
@@ -106,6 +123,10 @@ class TelaMenu(Screen):
 
     def IrParaTrocas(self):
         self.parent.current = 'telatrocas'
+    
+    def Deslogar(self):
+        c.deslogar()
+        self.parent.current = 'telainicial'
 
 class TrocatApp(App):
 

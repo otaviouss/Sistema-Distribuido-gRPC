@@ -164,7 +164,7 @@
                 background_color: 1, 1, 0, 1
                 pos_hint: {'center_x': 0.5}
                 size_hint: (0.5, 0.5)
-                #on_press: root.CadastrarVoucher()    
+                on_press: root.CadastrarUsuario()    
 
 
 <TelaMenu>:
@@ -201,7 +201,8 @@
                 font_size: 20
                 on_press: root.IrParaTrocas()
         ButtonFont:
-            text: 'Sair'
+            text: 'Deslogar'
+            on_press: root.Deslogar()
 
 # --
 <TelaCadastro>:

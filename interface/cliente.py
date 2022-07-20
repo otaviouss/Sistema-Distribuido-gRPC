@@ -11,7 +11,7 @@ class Cliente():
     def __init__(self):
         pass
 
-    def solicitarCriarUsuario(self, email, nome, senha):
+    def solicitarCriarUsuario(self, nome, email, senha):
 
         with grpc.insecure_channel('localhost:50051') as channel:
             stub = s_grpc.opcoesClienteStub(channel)
@@ -102,6 +102,10 @@ class Cliente():
         print("Troca Negada")
 
         return response
+    
+    def deslogar(self):
+        self.user_id = -1
+        return 1
 
 
 def main():
