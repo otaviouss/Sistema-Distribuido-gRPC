@@ -7,6 +7,7 @@
 # --
 <ButtonFont@Button>:
     font_name: 'data/Gabriela-Regular.ttf'
+    background_color: (177/255, 133/255, 219/255, 1)
 # --
 <LabelLogin@Label>:
     font_name: 'data/Gabriela-Regular.ttf'
@@ -32,7 +33,6 @@
 <InputCadastro@TextInput>:
     multiline: False
     write_tab: False
-
 # --
 <PopupCreditos@Popup>:
     size_hint: None, None
@@ -43,3 +43,13 @@
         #color: 0,0,0,0
         bold: 1
         font_size: 45
+# --
+<PopupInterrogacao@Popup>:
+    size_hint: None, None
+    size: 600, 200
+    title: 'Ética TroCat'
+    LabelFont:
+        text: 'Este trabalho foi aprovado pela Comissão de Ética no uso de Animais na UFV.'
+        #color: 0,0,0,0
+        bold: 1
+        font_size: 15

@@ -59,8 +59,8 @@ class Login(Screen):
             self.ids.not_OK.text = ''
             return True
         else:
-            self.ids.Jovem.text = 'Preencha todos os campos!'
-            popup = Popup(title='Test popup', content=Label(text='Hello world'), size_hint=(None, None), size=(400, 400))
+            #self.ids.Jovem.text = 'Preencha todos os campos!'
+            popup = Popup(title='Warning', content=Label(text='Preencha todos os campos!'), size_hint=(None, None), size=(400, 400))
             popup.open()
             return False
 
@@ -69,7 +69,9 @@ class Login(Screen):
         if validado:
             self.parent.current = 'telamenu'
         else:
-            self.ids.Jovem.text = 'Credenciais Inválidas.'
+            popup = Popup(title='Warning', content=Label(text='Credenciais Inválidas!'), size_hint=(None, None), size=(400, 400))
+            popup.open()
+            #self.ids.Jovem.text = 'Credenciais Inválidas.'
 
 class TelaVouchers(Screen):
     def IrParaMenu(self):
@@ -104,7 +106,9 @@ class TelaCadastro(Screen):
             self.ids.lanche.text = ''
             self.ids.duracao.text = ''
         else:
-            self.ids.cad.text = 'Preencha todos os campos!'
+            popup = Popup(title='Warning', content=Label(text='Preencha todos os campos!'), size_hint=(None, None), size=(400, 100))
+            popup.open()
+            #self.ids.cad.text = 'Preencha todos os campos!'
     
     def IrParaMenu(self):
         self.ids.cad.text = 'Cadastrar Voucher'
@@ -131,7 +135,7 @@ class TelaMenu(Screen):
 class TrocatApp(App):
 
     def build(self):
-        Window.clearcolor = (1,1,1,1)
+        Window.clearcolor = ( 218/255, 195/255, 232/255, 1)
         manager = ScreenManager()
 
         manager.add_widget(TelaInicial(name='telainicial'))
@@ -159,9 +163,7 @@ https://stackoverflow.com/questions/56226448/how-to-get-the-instance-from-a-recy
 
 '''
 Ajustes a serem feitos:
- - Limpar campos do cadastros após a realização de um
  - Alterar a cor do botão quando selecionado na tela de trocas
- - Colocar botão para sair do popup
 
 Problem: 
     Tá permitindo trocas entre vouchers próprios

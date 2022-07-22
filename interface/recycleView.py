@@ -55,9 +55,6 @@ class Voucher(RecycleDataViewBehavior, BoxLayout):
     def apply_selection(self, rv, index, is_selected):
         ''' Respond to the selection of items in the view. '''
         self.selected = is_selected
-        #print("__> ", self.selected)
-        global selecionado
-        selecionado = self.selected
         if is_selected:
             print("selection changed to {0}".format(index))
             pass
@@ -65,6 +62,28 @@ class Voucher(RecycleDataViewBehavior, BoxLayout):
             print("selection removed for {0}".format(index))
             pass
     
+
+class VoucherII(RecycleDataViewBehavior, BoxLayout): # Apenas para exibição dos vouchers
+    ''' Add selection support to the Label '''
+    index = None
+    selected = BooleanProperty(False)
+    selectable = BooleanProperty(True)
+
+    '''Atributos Voucher'''
+    imagem = StringProperty()
+    label_titulo = StringProperty()
+    label_descricao = StringProperty()
+    label_nome_gato = StringProperty()
+    label_local = StringProperty()
+    label_lanche = StringProperty()
+    label_duracao = StringProperty()
+    '''----------------------------'''
+
+    def refresh_view_attrs(self, rv, index, data):
+        ''' Catch and handle the view changes '''
+        self.index = index
+        return super(VoucherII, self).refresh_view_attrs(
+            rv, index, data)
 
 class RV(RecycleView):
     rv_data_list = ListProperty()
@@ -74,7 +93,10 @@ class RV(RecycleView):
 
     # Carrega todos os Vouchers
     def LoadData(self):
+        print("Olhando Load: ", self.rv_data_list)
         self.rv_data_list.clear()
+        print("Olhando Load after clear: ", self.rv_data_list)
+
         dados = c.apresentarVouchers()
 
         self.rv_data_list.extend([{'imagem': 'figuras/' + dados.v[i].imagem + ".png", 
@@ -101,6 +123,11 @@ class RV(RecycleView):
                                    'label_lanche': dados.v[i].lanche,
                                    'label_duracao': str(dados.v[i].duracao)} for i in range(len(dados.v))])
     
+    
+    def PrintTes(self):
+        print("-->: ", self.rv_data_list)
+
+
     def IsAnyVoucherSelected(self):
         if not self.layout_manager.selected_nodes:
             return False

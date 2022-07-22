@@ -10,7 +10,7 @@
             orientation: 'horizontal'
             size_hint: 1, None
             height: 50
-            spacing: 20
+            spacing: 15
             AnchorLayout:
                 anchor_x: 'right'
                 anchor_y: 'center'
@@ -43,6 +43,11 @@
             text: ''
             size_hint: 1, None
             height: 100
+        ButtonFont:
+            text: '?'
+            size_hint: 0.05, 0.1
+            on_release: Factory.PopupInterrogacao().open()
+
 # --
 <Login>:
     BoxLayout:
@@ -51,7 +56,7 @@
         spacing: 20
         LabelLogin:
             id: Jovem
-            text: 'TROCAT'
+            text: 'Login'
             color: 0,0,0,1
             bold: 1
             font_size: 45
@@ -67,12 +72,9 @@
                 font_size: 20
                 size_hint: (0.4, 0.2)
                 pos_hint: {'center_x': 0.5}
-
             Label:
                 text: ''
                 size_hint: 0.1, 0
-
-
             LabelLogin:
                 text: 'Senha'
                 color: 0,0,0,1
@@ -87,28 +89,23 @@
             TextInput:
                 id: OK
                 multiline: False
-                size_hint: 1, 0.5
+                size_hint: 1, 0.3
                 write_tab: False
-                
             Label:
                 text: ''
                 size_hint: 0.1, 0
-            
             TextInput:
                 id: not_OK
                 multiline: False
-                size_hint: 1, 0.5
+                size_hint: 1, 0.3
                 write_tab: False
-
-
-            
+                password: True
         ButtonFont:
             id: loucura
             text: 'Entrar'
-            background_color: 1, 1, 0, 1
             on_press: root.Clicou()
             pos_hint: {'center_x': 0.5}
-            size_hint: (0.5, 0.5)
+            size_hint: (0.3, 0.5)
 # --
 <TelaCadastroUsuario>:
     BoxLayout:
@@ -268,17 +265,17 @@
 
         GridLayout:
             cols: 2
-            padding: 70
-            size_hint: 1, 1
-            #height: 100
+            size_hint: 1, None
+            height: 100
+            padding: 30
             
-            Button:
+            ButtonFont:
                 text: 'Voltar'
                 pos_hint: {'center_x': 0.5}
                 size_hint: (0.5, 0.5)
                 on_press: root.IrParaMenu()
 
-            Button:
+            ButtonFont:
                 text: 'Cadastrar'
                 background_color: 1, 1, 0, 1
                 pos_hint: {'center_x': 0.5}
@@ -289,6 +286,46 @@
     canvas.before:
         Color:
             rgba: (.0, 0.9, .1, .3) if self.selected else (253/255, 228/255, 71/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Color:
+            rgba: 0, 0, 0, 1
+        Line:
+            width: 2
+            rectangle: self.x, self.y, self.width, self.height
+        
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        Image:
+            source: root.imagem
+            size: self.texture_size
+            #allow_stretch: True
+            #keep_ratio: False
+            size_hint: 1, 1
+            #height: 200
+            #width: 50
+        BoxLayout:
+            orientation: 'vertical'
+
+            LabelCadastro:
+                text: root.label_titulo
+            LabelCadastro:
+                text: root.label_descricao
+            LabelCadastro:
+                text: root.label_nome_gato
+            LabelCadastro:
+                text: root.label_local
+            LabelCadastro:
+                text: root.label_lanche
+            LabelCadastro:
+                text: root.label_duracao
+# --
+<VoucherII>:
+    canvas.before:
+        Color:
+            rgba: (253/255, 228/255, 71/255, 1)
         Rectangle:
             pos: self.pos
             size: self.size
@@ -313,7 +350,7 @@
             text: root.label_lanche
         LabelCadastro:
             text: root.label_duracao
-
+# --
 <TelaMeusVouchers>:
     on_enter: terra.LoadDataUser()
     BoxLayout:
@@ -334,18 +371,12 @@
             height: 50
         RV:
             id: terra
-            viewclass: 'Voucher'  # defines the viewtype for the data items.
+            viewclass: 'VoucherII'  # defines the viewtype for the data items.
             orientation: "horizontal"
             data: self.rv_data_list
-            #spacing: 80
-            #padding: 50, 50
-            #space_x: self.size[0]/3
-            #size_hint: 1, 1 
-
             RecycleGridLayout:
                 cols: 3
                 spacing: 10
-                #padding: 1, 50
                 size_hint: 1, 1
                 default_size: None, dp(112)
                 default_size_hint: 1, None
@@ -390,7 +421,7 @@
 
 
 <TelaVouchers>:
-    on_enter: joia.LoadData()
+    on_enter: joia.LoadData(), joia.PrintTes()
     BoxLayout:
         orientation: 'vertical'
         #padding: 50
@@ -418,6 +449,7 @@
             SelectableRecycleGridLayout:
                 cols: 2
                 spacing: 10
+                padding: 5
                 size_hint: 1, None
                 default_size: None, dp(160)
                 default_size_hint: 1, None
