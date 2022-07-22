@@ -17,8 +17,11 @@ class Cliente():
             stub = s_grpc.opcoesClienteStub(channel)
             response = stub.cadastrarCliente(s.Cliente(email=email, nome=nome, senha=str(senha)))
 
-        if(response.message == 1): print("Sucesso!")
-        else:                      print("Falha! Email já utilizado.")
+        if(response.message == 1):
+            print("Sucesso!")
+            self.realizarLogin(email, senha)
+        else:
+            print("Falha! Email já utilizado.")
 
     def realizarLogin(self, email, senha):
 
