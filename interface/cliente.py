@@ -80,7 +80,7 @@ class Cliente():
 
         with grpc.insecure_channel('localhost:50051') as channel:
             stub = s_grpc.opcoesTrocaStub(channel)
-            response = stub.apresentarTrocas(s.Troca(id1=id_voucher1, id2=id_voucher2))
+            response = stub.proporTroca(s.Troca(id1=id_voucher1, id2=id_voucher2))
 
         print("Propondo Troca")
 
