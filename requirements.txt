@@ -1,2 +1,4 @@
 kivy==2.1.0
 prisma==0.6.6
+grpcio
+grpcio-tools
